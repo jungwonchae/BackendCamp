@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page1</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+ID
+<input type="text" id="tbuser_id" />
+<button onclick="detail_tbuser()">글 불러오기</button>
+
+이름
+<input type="text" id="tbuser_name" />
+핸드폰 번호
+<input type="text" id="tbuser_phone" />
+생일
+<input type="text" id="tbuser_birth" />
+성별
+<input type="text" id="tbuser_gender" />
+<button onclick="update_tbuser()">글 수정</button>
+<button onclick="delete_tbuser()">글 삭제</button>
+
+<script>
+    function detail_tbuser(){
+        $.ajax({
+            url: "/api/tbuser/detail/" + $("#tbuser_id").val(),
+            type: "GET",
+            contentType : 'application/json; charset=utf-8',
+            data: {},
+            cache: false,
+            success: (data, status, xhr)=>{
+                //alert("success!!");
+                let tbuser = data.data;
+                alert(JSON.stringify(data));
+                $("#tbuser_name").val(tbuser.name);
+                $("#tbuser_phone").val(tbuser.phone);
+                $("#tbuser_birth").val(tbuser.birth);
+                $("#tbuser_gender").val(tbuser.gender);
+            },
+            error: (data, status, xhr)=>{
+                alert("error!!");
+                alert(JSON.stringify(data));
+            },
+        });
+    }
+
+
+
+    function update_tbuser(){
+        $.ajax({
+            url: "/api/tbuser/update",
+            type: "GET",
+            contentType : 'application/json; charset=utf-8',
+            data: {
+                name : $("#tbuser_name").val()
+                ,phone : $("#tbuser_phone").val()
+                ,birth : $("#tbuser_birth").val()
+                ,gender : $("#tbuser_gender").val()
+            },
+            cache: false,
+            success: (data, status, xhr)=>{
+                //alert("success!!");
+                alert(JSON.stringify(data));
+            },
+            error: (data, status, xhr)=>{
+                alert("error!!");
+                alert(JSON.stringify(data));
+            },
+        });
+    }
+
+    function delete_tbuser(){
+        $.ajax({
+            url: "/api/tbuser/delete",
+            type: "GET",
+            contentType : 'application/json; charset=utf-8',
+            data: {
+                id : $("#tbuser_id").val()
+            },
+            cache: false,
+            success: (data, status, xhr)=>{
+                //alert("success!!");
+                alert(JSON.stringify(data));
+            },
+            error: (data, status, xhr)=>{
+                alert("error!!");
+                alert(JSON.stringify(data));
+            },
+        });
+    }
+
+</script>
+
+</body>
+</html>

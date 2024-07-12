@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page1</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+이름
+<input type="text" id="tbuser_name" />
+핸드폰 번호
+<input type="text" id="tbuser_phone" />
+생일
+<input type="text" id="tbuser_birth" />
+성별
+<input type="text" id="tbuser_gender" />
+<button onclick="create_tbuser()">글 작성</button>
+
+<script>
+    let div_test = $("#div_test").html();
+    //alert(div_test);
+
+    function create_test(obj){
+        let object_html = $(obj).parent().attr("id");
+        alert(object_html);
+    }
+
+    function create_tbuser(){
+        $.ajax({
+            url: "/api/tbuser/create",
+            type: "GET",
+            contentType : 'application/json; charset=utf-8',
+            data: {
+                name : $("#tbuser_name").val()
+                ,phone : $("#tbuser_phone").val()
+                ,birth : $("#tbuser_birth").val()
+                ,gender : $("#tbuser_gender").val()
+            },
+            cache: false,
+            success: (data, status, xhr)=>{
+                //alert("success!!");
+                alert(JSON.stringify(data));
+            },
+            error: (data, status, xhr)=>{
+                alert("error!!");
+                alert(JSON.stringify(data));
+            },
+        });
+    }
+
+</script>
+</body>
+</html>
