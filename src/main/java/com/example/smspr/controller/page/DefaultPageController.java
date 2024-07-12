@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DefaultPageController {
 
     //24-07-09
-    @GetMapping("/index")
+   /*@GetMapping("/index")
     public String index(){
         return "index";
-    }
-    @GetMapping("/index2")
-    public String dddd(){
-        return "index2";
-    }
+    }*/
+
     @GetMapping({"/home","/home2"})
     public String home(){
         return "index";
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
     }
 
     //24-07-10
