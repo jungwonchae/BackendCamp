@@ -27,6 +27,8 @@ public class TbboardRestController {
     }
 
 
+    //24-07-12
+    //service에 기능을 넣음.
     @GetMapping("/create")
     public Map<String, Object> create(
             @RequestParam String title
